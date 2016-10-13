@@ -82,6 +82,8 @@ let processText = (text, sender)  => {
         });
         return;
     }
+
+    sendMessage({text: 'I did not understand that command.'}, sender);
 };
 
 let handleGet = (req, res) => {
