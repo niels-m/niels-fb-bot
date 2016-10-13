@@ -24,6 +24,12 @@ let sendMessage = (message, recipient) => {
 
 let processText = (text, sender)  => {
     let match;
+    match = text.match(/echo/i);
+    if (match) {
+        sendMessage({text: 'I hear you'}, sender);
+        return;
+    }
+
     match = text.match(/help/i);
     if (match) {
         sendMessage({text:
