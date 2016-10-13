@@ -33,12 +33,17 @@ let processText = (text, sender)  => {
     match = text.match(/help/i);
     if (match) {
         sendMessage({text:
-            `You can ask me things like:
-    Search account Acme
-    Search Acme in accounts
-    Search contact Smith
-    What are my top 3 opportunities?
-        `}, sender);
+            'You can ask me things'
+        }, sender);
+        return;
+    }
+
+    match = text.match(/list accounts/i);
+    if (match) {
+        salesforce.listAccounts().then(accounts => {
+            sendMessage({text: 'Here are the accounts I found :'}, sender);
+            sendMessage(formatter.formatAccounts(accounts), sender)
+        });
         return;
     }
 
